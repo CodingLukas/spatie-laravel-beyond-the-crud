@@ -13,8 +13,17 @@ class DetermineInvoiceNumber
     public function __invoke(
         Client $client,
         CreateInvoiceData $data
-    ) : CreateInvoiceData
+    ): CreateInvoiceData
     {
-        // TODO: Implement __invoke() method.
+        $latestInvoiceNumber = Invoice::query()->latestNumber();
+
+        return $data->withNumber(
+            str_pad(
+                ((int)$latestInvoiceNumber) + 1,
+                3,
+                '0',
+                STR_PAD_LEFT
+            )
+        );
     }
 }

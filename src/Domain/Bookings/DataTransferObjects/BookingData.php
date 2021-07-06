@@ -9,8 +9,6 @@ use Spatie\Period\Period;
 
 class BookingData extends DataTransferObject
 {
-    public array $tabs;
-
     public string $name;
 
     public Unit $unit;
@@ -25,7 +23,7 @@ class BookingData extends DataTransferObject
             'period' => Period::make(
                 $request->input('date_start'),
                 $request->input('date_end'),
-            )
+            ),
         ]);
     }
 
